@@ -1,6 +1,14 @@
 {% extends 'agency/RealEstate/real_estate_details.html' %}
 {% block unique_details %}
 <tr>
+    <td>Дом/Дача:</td>
+    {% if real_estate.house_type == "house" %}
+    <td>Дом</td>
+    {% else %}
+    <td>Дача</td>
+    {% endif %}
+</tr>
+<tr>
     <td>Количество комнат:</td>
     <td>{{ real_estate.number_of_rooms }}</td>
 </tr>

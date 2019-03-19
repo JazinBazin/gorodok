@@ -39,7 +39,14 @@
                 </tr>
                 <tr>
                     <td>Площадь:</td>
-                    <td>{{ real_estate.square }} м<sup>2</sup></td>
+                    <td>
+                        {{ real_estate.square }}
+                        {% if real_estate.area_units == "square meters" %}
+                        м<sup>2</sup>
+                        {% else %}
+                        ГА
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <td>Артикул:</td>
@@ -53,10 +60,6 @@
         </table>
     </div>
 </div>
-
-<!--<a class="btn btn-outline-success" href="{% url 'agency:offer_response' real_estate.title_text real_estate.vendor_code %}" role="button">-->
-<!--    Откликнутся-->
-<!--</a>-->
 
 <script src="{% static 'agency/JS/gallery.js' %}"></script>
 {% endblock %}
