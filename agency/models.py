@@ -234,7 +234,7 @@ class House(RealEstate):
 
     title_image_directory = 'HousesTitleImages'
     house_type = models.CharField(
-        max_length=8, choices=(('house', 'Дом'), ('country_house', 'Дача')),
+        max_length=13, choices=(('house', 'Дом'), ('country_house', 'Дача')),
         default='house', verbose_name='Дом/Дача')
     number_of_rooms = models.IntegerField(verbose_name='Количество комнат')
     floor_count = models.IntegerField(verbose_name='Количество этажей')
