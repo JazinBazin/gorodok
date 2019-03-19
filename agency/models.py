@@ -177,7 +177,7 @@ class RealEstate(models.Model):
     owner_phone = models.CharField(
         max_length=100, verbose_name='Номер телефона владельца')
     price = models.IntegerField(verbose_name='Цена')
-    square = models.IntegerField(verbose_name='Площадь')
+    square = models.DecimalField(max_digits=19, decimal_places=10, verbose_name='Площадь')
     area_units = models.CharField(
         max_length=20,
         choices=(
