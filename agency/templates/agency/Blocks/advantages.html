@@ -1,0 +1,20 @@
+{% if advantages %}
+<h1 class="display-4 text-center mb-3">Наши преимущества</h1>
+<div class="row justify-content-center">
+    {% for advantage in advantages %}
+    <div class="col-12 col-md-6 col-lg-4">
+        <div class="card border-0">
+            <img src="{{ advantage.image.url }}" class="card-img-top w-25 h-25 align-self-center" alt="">
+            <div class="card-body">
+                <h5 class="card-title">{{ advantage.title }}</h5>
+                <ul class="list-group list-group-flush">
+                    {% for advantage_list_item in advantage.list_items.all %}
+                    <li class="list-group-item">{{ advantage_list_item.text }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}

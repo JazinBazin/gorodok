@@ -1,0 +1,23 @@
+@media (max-width: 576px) {
+    .display-3,
+    .display-4,
+    h1 {
+        font-size: 2rem !important;
+    }
+}
+
+.navbar-nav li a {
+    font-size: 1.5rem;
+    font-weight: normal;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(0, 0, 0) !important;
+}
+
+.navbar-nav li a:hover {
+    opacity: 0.5;
+}
+
+.SocialNetwork {
+    max-width: 32px;
+    max-height: 32px;
+}

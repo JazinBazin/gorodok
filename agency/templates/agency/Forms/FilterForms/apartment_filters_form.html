@@ -1,0 +1,34 @@
+<form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% include 'agency/Forms/FilterForms/real_estate_filters.html' %}
+    <div class="form-group">
+        {{ form.number_of_rooms_from.label }}
+        <div class="form-row form-group">
+            <div class="col">
+                {{ form.number_of_rooms_from.errors }}
+                {{ form.number_of_rooms_from }}
+            </div>
+            <div class="col">
+                {{ form.number_of_rooms_to.errors }}
+                {{ form.number_of_rooms_to }}
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form.floor_number_from.label }}
+        <div class="form-row form-group">
+            <div class="col">
+                {{ form.floor_number_from.errors }}
+                {{ form.floor_number_from }}
+            </div>
+            <div class="col">
+                {{ form.floor_number_to.errors }}
+                {{ form.floor_number_to }}
+            </div>
+        </div>
+    </div>
+    <div class="form-group d-flex justify-content-center">
+        <button type="submit" class="btn btn-outline-success mr-3">Применить</button>
+    </div>
+</form>

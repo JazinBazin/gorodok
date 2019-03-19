@@ -1,0 +1,10 @@
+{% extends 'agency/Basic/basic.html' %}
+{% block content %}
+<img src="{{ piece_of_news.image.url }}" alt="" class="img-fluid d-block mx-auto">
+<h1 class="display-4">{{ piece_of_news.headline }}</h1>
+<p>{{ piece_of_news.publication_date }}</p>
+<p class="lead text-justify">{{ piece_of_news.text }}</p>
+{% if piece_of_news.link_to_source %}
+<p>Источник информации: <a href="{{ piece_of_news.link_to_source }}" target="_blank">{{ piece_of_news.link_to_source }}</a></p>
+{% endif %}
+{% endblock %}

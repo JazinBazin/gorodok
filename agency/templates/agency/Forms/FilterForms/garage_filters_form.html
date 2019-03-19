@@ -1,0 +1,8 @@
+<form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% include 'agency/Forms/FilterForms/real_estate_filters.html' %}
+    <div class="form-group d-flex justify-content-center">
+        <button type="submit" class="btn btn-outline-success mr-3">Применить</button>
+    </div>
+</form>

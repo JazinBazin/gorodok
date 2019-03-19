@@ -1,0 +1,13 @@
+{% extends 'agency/Basic/basic.html' %}
+{% load static %}
+{% block content %}
+{% if about_company_blocks %}
+{% for about_company_block in about_company_blocks %}
+<h1 class="display-4 text-center mb-3">{{ about_company_block.title }}</h1>
+{% if about_company_block.image %}
+<img src="{{ about_company_block.image.url }}" alt="" class="img-fluid d-block mx-auto">
+{% endif %}
+<p class="lead text-justify">{{ about_company_block.text }}</p>
+{% endfor %}
+{% endif %}
+{% endblock %}

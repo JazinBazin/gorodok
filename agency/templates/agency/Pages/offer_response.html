@@ -1,0 +1,12 @@
+{% extends 'agency/Basic/basic.html' %}
+{% load static %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-auto">
+        <h1 class="display-4 mb-3">{{ real_estate_title }}</h1>
+        {% include "agency/Forms/UserForms/offer_response_form.html" with form=offer_response_form %}
+    </div>
+</div>
+<script src="{% static 'agency/JS/OfferRespondForm.js' %}"></script>
+<script src="{% static 'agency/JS/Phoneinput.js' %}"></script>
+{% endblock %}

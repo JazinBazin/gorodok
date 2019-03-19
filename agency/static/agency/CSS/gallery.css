@@ -1,0 +1,107 @@
+
+.prevSlide, .nextSlide {
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -44px;
+    padding: 30px;
+    cursor: pointer;
+    color: dodgerblue;
+    font-size: 24px;
+    font-weight: bold;
+    user-select: none;
+}
+  
+.nextSlide {
+    right: 0;
+}
+
+.prevSlide:hover, .nextSlide:hover {
+    opacity: 0.5;
+}
+
+#openedImageContainer {
+    height: 768px;
+    position: relative;
+}
+
+#openedImage {
+    height: auto;
+    max-height: 768px;
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+#gallery {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+#gallery img {
+    height: 150px;
+    max-height: 150px;
+    width: auto;
+    cursor: pointer;
+    opacity: 1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 3px;
+    margin-right: 5px;
+}
+
+#gallery img:last-child {
+    margin-right: 0;
+}
+
+#gallery img:hover {
+    opacity: 0.8;
+}
+
+::-webkit-scrollbar {
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    margin-top: 5px;
+    background: #555;
+}
+
+
+@media (max-width: 768px) {
+    #openedImageContainer {
+        height: 576px;
+        position: relative;
+    }
+    
+    #openedImage {
+        height: auto;
+        max-height: 576px;
+        max-width: 100%;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    #openedImageContainer {
+        height: 400px;
+        position: relative;
+    }
+    
+    #openedImage {
+        height: auto;
+        max-height: 400px;
+        max-width: 100%;
+        border-radius: 10px;
+    }
+}

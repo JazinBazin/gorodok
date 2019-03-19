@@ -1,0 +1,5 @@
+
+.bold-headers p:nth-child(odd) {
+    font-weight: 700 !important;
+    margin-bottom: .25rem !important;
+}

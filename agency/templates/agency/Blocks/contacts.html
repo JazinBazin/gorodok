@@ -1,0 +1,35 @@
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'agency/CSS/contacts.css' %}">
+{% endblock %}
+{% if contacts %}
+<h1 class="display-4 text-center mb-3">Контакты</h1>
+<div class="row mb-3 border rounded">
+    <div class="col-12 col-md-6 d-none d-lg-inline pl-0">
+        <script type="text/javascript" charset="utf-8" async
+            src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ab386f4492a205b17d4e93ee319d2fad3fa286cce697724198ebe61515bbae7fd&amp;width=100%25&amp;height=100%&amp;lang=ru_RU&amp;scroll=true"></script>
+    </div>
+    <div class="col-12 col-md-6 ml-0 contacts bold-headers">
+        <p class="mt-3">Телефон</p>
+        <p>
+            {% for contact_phone in contacts.phones.all %}
+            {{ contact_phone.phone }}<br>
+            {% endfor %}
+        </p>
+        <p>e-mail</p>
+        <p>{{ contacts.email }}</p>
+        <p>Адрес</p>
+        <p>{{ contacts.address }}</p>
+        <p>Рабочие дни</p>
+        <p>{{ contacts.working_days }}</p>
+        <p>Рабочее время</p>
+        <p>{{ contacts.working_time }}</p>
+        <p>Перерыв</p>
+        <p>{{ contacts.break_time }}</p>
+        <p>ОГРН</p>
+        <p>{{ contacts.ogrn }}</p>
+        <p>ИНН</p>
+        <p>{{ contacts.inn }}</p>
+    </div>
+</div>
+{% endif %}

@@ -1,0 +1,41 @@
+<div class="form-group">
+    {{ form.sort_type.errors }}
+    {{ form.sort_type.label }}
+    {{ form.sort_type }}
+</div>
+<div class="form-group">
+    {{ form.sort_order.errors }}
+    {{ form.sort_order.label }}
+    {{ form.sort_order }}
+</div>
+<div class="form-group">
+    {{ form.purchase_or_rent.errors }}
+    {{ form.purchase_or_rent.label }}
+    {{ form.purchase_or_rent }}
+</div>
+<div class="form-group">
+    {{ form.square_from.label }}
+    <div class="form-row form-group">
+        <div class="col">
+            {{ form.square_from.errors }}
+            {{ form.square_from }}
+        </div>
+        <div class="col">
+            {{ form.square_to.errors }}
+            {{ form.square_to }}
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    {{ form.price_from.label }}
+    <div class="form-row form-group">
+        <div class="col">
+            {{ form.price_from.errors }}
+            {{ form.price_from }}
+        </div>
+        <div class="col">
+            {{ form.price_to.errors }}
+            {{ form.price_to }}
+        </div>
+    </div>
+</div>

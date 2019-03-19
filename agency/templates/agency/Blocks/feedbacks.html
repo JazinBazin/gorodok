@@ -1,0 +1,16 @@
+{% if feedbacks %}
+<h1 class="display-4 text-center mb-3">Отзывы клиентов</h1>
+<div class="row">
+    {% for feedback in feedbacks %}
+    <div class="col-12 col-md-6">
+        <div class="card border-0">
+            <img src="{{ feedback.image.url }}" class="card-img-top w-25 h-25 rounded-circle align-self-center" alt="">
+            <div class="card-body">
+                <h5 class="card-title">{{ feedback.author }}</h5>
+                <p class="card-text">{{ feedback.feedback_text }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}

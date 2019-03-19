@@ -1,0 +1,21 @@
+{% if hot_real_estate %}
+<h1 class="display-4 text-center mb-3">Горячие предложения</h1>
+<div class="row">
+    {% for estate in hot_real_estate %}
+    <div class="col-12 col-sm-6 col-lg-4 mb-3">
+        <div class="card">
+            <div class="card-body d-flex flex-column align-items-center">
+                <h5 class="card-title lead">{{ estate.title_text }}</h5>
+                <p class="card-text">Арт. {{ estate.vendor_code }}</p>
+                <img src="{{ estate.title_image.url }}" class="img-fluid" alt="">
+            </div>
+            <div class="card-footer d-flex flex-column align-items-center">
+                <p> {{ estate.price }} ₽</p>
+                {% block hot_details_reference %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}

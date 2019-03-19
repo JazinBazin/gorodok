@@ -1,0 +1,40 @@
+{% load static %}
+<nav class="navbar navbar-expand-xl navbar-light">
+    <a class="navbar-brand" href="{% url 'agency:index' %}">
+        <img src="{% static 'agency/images/logo.png' %}" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'agency:index' %}">Главная</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'agency:services' %}">Услуги</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'agency:about' %}">О нас</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'agency:contacts' %}">Контакты</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'agency:news' %}">Новости</a>
+            </li>
+        </ul>
+        <form class="form-inline mx-auto">
+            <div class="row">
+                <div class="col-12 col-xl-auto mt-1 mt-xl-0 mb-3 mb-xl-0">
+                    <a class="btn btn-outline-success" href="{% url 'agency:application' %}">Оставить
+                        заявку</a>
+                </div>
+                <div class="col-12 col-xl-auto">
+                    <a class="btn btn-outline-success" href="{% url 'agency:advert' %}">Добавить объявление</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</nav>

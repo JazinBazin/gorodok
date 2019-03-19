@@ -1,0 +1,7 @@
+{% extends 'agency/RealEstate/real_estate.html' %}
+{% block real_estate_header %}
+<h1 class="display-4 text-center mb-3">Гаражи</h1>
+{% endblock %}
+{% block form_type %}
+{% include 'agency/Forms/FilterForms/garage_filters_form.html' with form=garage_filters_form %}
+{% endblock %}

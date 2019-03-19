@@ -1,0 +1,11 @@
+{% extends 'agency/Basic/basic.html' %}
+{% load static %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-auto">
+        {% include "agency/Forms/UserForms/application_form.html" with form=application_form %}
+    </div>
+</div>
+<script src="{% static 'agency/JS/ApplicationForm.js' %}"></script>
+<script src="{% static 'agency/JS/Phoneinput.js' %}"></script>
+{% endblock %}

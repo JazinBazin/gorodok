@@ -1,0 +1,14 @@
+{% if partners %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'agency/CSS/partners.css' %}">
+{% endblock %}
+<h1 class="display-4 text-center mb-3">Наши партнёры</h1>
+<div class="row justify-content-center">
+    {% for partner in partners %}
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center align-items-center">
+        <a href="{{ partner.link }}"><img src="{{ partner.image.url }}" alt="" class="img-fluid partner"></a>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}

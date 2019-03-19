@@ -1,0 +1,62 @@
+{% extends 'agency/Basic/basic.html' %}
+{% load static %}
+{% load agency_extras %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'agency/CSS/gallery.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div id="openedImageContainer" class="d-flex align-items-center mb-1">
+    <p class="prevSlide">&#10094;</p>
+    <p class="nextSlide">&#10095;</p>
+    <img id="openedImage" class="img-fluid d-block mx-auto" src="{{ real_estate.image.url }}" alt="">
+</div>
+<div class="row justify-content-center">
+    <div id="gallery" class="ml-1 mr-1">
+        {% for real_estate_image in real_estate.images.all  %}
+        <img src="{{ real_estate_image.image.url }}" alt="">
+        {% endfor %}
+    </div>
+</div>
+
+<h1 class="display-4">{{ real_estate.title_text }}</h1>
+<p class="lead text-justify">{{ real_estate.description }}</p>
+<div class="row">
+    <div class="col-auto">
+        <table class="table table-borderless">
+            <tbody>
+                {% block unique_details %}
+                {% endblock %}
+                <tr>
+                    <td>Продажа/Аренда:</td>
+                    {% if real_estate.purchase_or_rent == "purchase" %}
+                    <td>Продажа</td>
+                    {% else %}
+                    <td>Аренда</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td>Площадь:</td>
+                    <td>{{ real_estate.square }} м<sup>2</sup></td>
+                </tr>
+                <tr>
+                    <td>Артикул:</td>
+                    <td>{{ real_estate.vendor_code }}</td>
+                </tr>
+                <tr>
+                    <td>Цена:</td>
+                    <td>{{ real_estate.price|price_value }} ₽</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--<a class="btn btn-outline-success" href="{% url 'agency:offer_response' real_estate.title_text real_estate.vendor_code %}" role="button">-->
+<!--    Откликнутся-->
+<!--</a>-->
+
+<script src="{% static 'agency/JS/gallery.js' %}"></script>
+{% endblock %}

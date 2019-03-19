@@ -1,0 +1,126 @@
+<form method='POST' name="ApplicationForm">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="form-group">
+        {{ form.user_name.errors }}
+        {{ form.user_name.label }}
+        {{ form.user_name }}
+    </div>
+    <div class="form-group">
+        {{ form.user_phone.errors }}
+        {{ form.user_phone.label }}
+        {{ form.user_phone }}
+    </div>
+    <div class="form-group">
+        {{ form.user_email.errors }}
+        {{ form.user_email.label }}
+        {{ form.user_email }}
+    </div>
+    <div class="form-group">
+        {{ form.purchase_or_rent.label }}
+        <div class="form-row">
+            <div class="col">
+                {{ form.purchase_or_rent.errors }}
+                {{ form.purchase_or_rent }}
+            </div>
+            <div class="col">
+                {{ form.service_type.errors }}
+                {{ form.service_type }}
+            </div>
+        </div>
+    </div>
+    <div class="form-group" id="rentPeriodFilter" hidden>
+        {{ form.rent_period_from.label }}
+        <div class="form-row">
+            <div class="col mb-1 mb-sm-0">
+                {{ form.rent_period_from.errors }}
+                {{ form.rent_period_from }}
+            </div>
+            <div class="col">
+                {{ form.rent_period_to.errors }}
+                {{ form.rent_period_to }}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" id="roomCountFilter">
+        {{ form.number_of_rooms_from.label }}
+        <div class="form-row">
+            <div class="col">
+                {{ form.number_of_rooms_from.errors }}
+                {{ form.number_of_rooms_from }}
+            </div>
+            <div class="col">
+                {{ form.number_of_rooms_to.errors }}
+                {{ form.number_of_rooms_to }}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" id="floorNumberFilter">
+        {{ form.floor_number_from.label }}
+        <div class="form-row">
+            <div class="col">
+                {{ form.floor_number_from.errors }}
+                {{ form.floor_number_from }}
+            </div>
+            <div class="col">
+                {{ form.floor_number_to.errors }}
+                {{ form.floor_number_to }}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" id="floorCountFilter" hidden>
+        {{ form.floor_count_from.label }}
+        <div class="form-row">
+            <div class="col">
+                {{ form.floor_count_from.errors }}
+                {{ form.floor_count_from }}
+            </div>
+            <div class="col">
+                {{ form.floor_count_to.errors }}
+                {{ form.floor_count_to }}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form.square_from.label }}
+        <div class="form-row">
+            <div class="col">
+                {{ form.square_from.errors }}
+                {{ form.square_from }}
+            </div>
+            <div class="col">
+                {{ form.square_to.errors }}
+                {{ form.square_to }}
+            </div>
+            <div class="col">
+                {{ form.square_units.errors }}
+                {{ form.square_units }}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form.price_from.label }}
+        <div class="form-row">
+            <div class="col">
+                {{ form.price_from.errors }}
+                {{ form.price_from }}
+            </div>
+            <div class="col">
+                {{ form.price_to.errors }}
+                {{ form.price_to }}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form.user_message.label }}
+        {{ form.user_message.errors }}
+        {{ form.user_message }}
+    </div>
+    <button type="submit" class="btn btn-primary" id="buttonSubmit">Отправить</button>
+</form>

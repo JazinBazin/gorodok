@@ -1,0 +1,11 @@
+{% extends 'agency/RealEstate/real_estate_details.html' %}
+{% block unique_details %}
+<tr>
+    <td>Количество комнат:</td>
+    <td>{{ real_estate.number_of_rooms }}</td>
+</tr>
+<tr>
+    <td>Количество этажей:</td>
+    <td>{{ real_estate.floor_count }}</td>
+</tr>
+{% endblock %}

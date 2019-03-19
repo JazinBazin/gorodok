@@ -1,0 +1,18 @@
+{% extends 'agency/Basic/basic.html' %}
+{% block content %}
+<h1 class="display-4 text-center mb-3">Новости</h1>
+<div class="row">
+    {% for piece_of_news in news %}
+    <div class="col-12 col-md-6 mb-3">
+        <div class="card">
+            <img src="{{ piece_of_news.image.url }}" alt="" class="card-img-top">
+            <div class="card-body">
+                <a href="{% url 'agency:news_details' pk=piece_of_news.id %}"
+                    class="h5 card-title d-block mb-3">{{ piece_of_news.headline }}</a>
+                <h6 class="card-subtitle text-muted">{{ piece_of_news.publication_date }}</h6>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

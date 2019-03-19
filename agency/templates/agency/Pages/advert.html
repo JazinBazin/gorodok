@@ -1,0 +1,9 @@
+{% extends 'agency/Basic/basic.html' %}
+{% load static %}
+{% block content %}
+<div class="jumbotron">
+    <h5>Для размещения объявления отправьте необходимую информацию на электронную почту {{ contacts.email }} либо
+        свяжитесь с нами по телефону.</h5>
+</div>
+{% include "agency/Blocks/contacts.html" %}
+{% endblock %}

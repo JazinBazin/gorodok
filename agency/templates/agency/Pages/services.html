@@ -1,0 +1,24 @@
+{% extends 'agency/Basic/basic.html' %}
+{% load static %}
+{% block content %}
+{% if services %}
+<h1 class="display-4 text-center mb-3">Услуги</h1>
+<img src="{% static 'agency/images/services.png' %}" alt="" class="img-fluid d-block mx-auto">
+<div class="row justify-content-center">
+    {% for service in services %}
+    <div class="col-12 col-md-6 col-lg-4">
+        <div class="card border-0">
+            <div class="card-body">
+                <h5 class="card-title">{{ service.title }}</h5>
+                <ul class="list-group list-group-flush">
+                    {% for service_list_item in service.list_items.all %}
+                    <li class="list-group-item">{{ service_list_item.text }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}
