@@ -133,7 +133,7 @@ def get_real_estate_data(request, FiltersForm, RealEstateType):
         filters_form = FiltersForm()
         real_estate = RealEstateType.objects.filter(status='published')
 
-    paginator = Paginator(real_estate, 2, allow_empty_first_page=True)
+    paginator = Paginator(real_estate, 10, allow_empty_first_page=True)
     page = request.GET.get('page')
     real_estate_for_page = paginator.get_page(page)
 
