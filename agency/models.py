@@ -65,8 +65,10 @@ class Feedback(models.Model):
 
     author = models.CharField(max_length=100, verbose_name='Автор')
     image = models.ImageField(
-        upload_to="agency/images/FeedbacksImages", verbose_name='Фото')
-    feedback_text = models.TextField(verbose_name='Текст отзыва')
+        upload_to="agency/images/FeedbacksImages", verbose_name='Фото',
+        blank=True)
+    feedback_text = models.TextField(verbose_name='Текст отзыва', blank=True)
+    video_link = models.URLField(verbose_name='Видео', blank=True)
 
     def __str__(self):
         return self.author
@@ -177,7 +179,8 @@ class RealEstate(models.Model):
     owner_phone = models.CharField(
         max_length=100, verbose_name='Номер телефона владельца')
     price = models.IntegerField(verbose_name='Цена')
-    square = models.DecimalField(max_digits=19, decimal_places=10, verbose_name='Площадь')
+    square = models.DecimalField(
+        max_digits=19, decimal_places=10, verbose_name='Площадь')
     area_units = models.CharField(
         max_length=20,
         choices=(
@@ -350,10 +353,11 @@ def delete_image_file_on_delete(sender, instance, **kwargs):
 def delete_image_file_on_save(sender, instance, **kwargs):
     if not instance.pk:
         return
-    try:
-        old_image = sender.objects.get(pk=instance.pk).image
-    except sender.DoesNotExist:
+
+    old_image = sender.objects.get(pk=instance.pk).image
+    if not old_image:
         return
+
     new_image = instance.image
     if not old_image == new_image:
         if os.path.isfile(old_image.path):

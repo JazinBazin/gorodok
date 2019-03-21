@@ -1,13 +1,28 @@
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'agency/CSS/youtube.css' %}">
+{% endblock %}
 {% if feedbacks %}
 <h1 class="display-4 text-center mb-3">Отзывы клиентов</h1>
 <div class="row">
     {% for feedback in feedbacks %}
     <div class="col-12 col-md-6">
         <div class="card border-0">
+            {% if feedback.image %}
             <img src="{{ feedback.image.url }}" class="card-img-top w-25 h-25 rounded-circle align-self-center" alt="">
+            {% endif %}
             <div class="card-body">
                 <h5 class="card-title">{{ feedback.author }}</h5>
+                {% if feedback.video_link %}
+                <div class="video-container">
+                    <iframe class="youtube-frame" src="{{ feedback.video_link }}" frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                {% endif %}
+                {% if feedback.feedback_text %}
                 <p class="card-text">{{ feedback.feedback_text }}</p>
+                {% endif %}
             </div>
         </div>
     </div>

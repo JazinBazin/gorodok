@@ -14,6 +14,13 @@ from .models import \
     AboutCompanyBlock
 
 
+class FeedbackAdmin(admin.ModelAdmin):
+    def save_model(self, request, obj, form, change):
+        video_token = str(obj.video_link)[-11:]
+        obj.video_link = 'https://www.youtube.com/embed/' + video_token
+        obj.save()
+
+
 class ServiceListItemInline(admin.TabularInline):
     model = ServiceListItem
     extra = 1
@@ -141,7 +148,7 @@ class CommercialAdmin(RealEstateAdmin):
 admin.site.register(SocialNetwork)
 admin.site.register(ProductCategory)
 admin.site.register(Advantage, AdvantageAdmin)
-admin.site.register(Feedback)
+admin.site.register(Feedback, FeedbackAdmin)
 admin.site.register(Contact, ContactAdmin)
 admin.site.register(Apartment, ApartmentAdmin)
 admin.site.register(House, HouseAdmin)
