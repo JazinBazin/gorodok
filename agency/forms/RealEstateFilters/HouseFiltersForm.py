@@ -5,7 +5,18 @@ from agency.models import House
 
 
 class HouseFiltersForm(RealEstateFiltersForm):
-    
+
+    house_type = forms.ChoiceField(
+        label='Дом/Дача:',
+        choices=(
+            ('Any', 'Не важно'),
+            ('house', 'Дом'),
+            ('country_house', 'Дача'),
+        ),
+        initial='Any',
+        widget=forms.Select(attrs={'class': 'form-control'})
+    )
+
     number_of_rooms_from = forms.IntegerField(
         label="Количество комнат:",
         required=False,
@@ -47,6 +58,10 @@ class HouseFiltersForm(RealEstateFiltersForm):
             number_of_rooms__lte=self.cleaned_data['number_of_rooms_to'],
             floor_count__gte=self.cleaned_data['floor_count_from'],
             floor_count__lte=self.cleaned_data['floor_count_to'])
+
+        if self.cleaned_data['house_type'] != 'Any':
+            filtered_houses = filtered_houses.filter(
+                house_type=self.cleaned_data['house_type'])
 
         return filtered_houses
 

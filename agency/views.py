@@ -129,6 +129,9 @@ def get_real_estate_data(request, FiltersForm, RealEstateType):
         request.session['real-estate-filters'] = request.POST
         if filters_form.is_valid():
             real_estate = filters_form.get_filtered()
+        else:
+            filters_form = FiltersForm()
+            real_estate = RealEstateType.objects.filter(status='published')
     else:
         filters_form = FiltersForm()
         real_estate = RealEstateType.objects.filter(status='published')
