@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .forms.RealEstateFilters.ApartmentFiltersForm \
@@ -116,20 +117,38 @@ def success_message(request):
     })
 
 
-def apartments(request):
+def get_real_estate_data(request, FiltersForm, RealEstateType):
+
+    if request.method != 'POST':
+        if 'real-estate-filters' in request.session:
+            request.POST = request.session['real-estate-filters']
+            request.method = 'POST'
+
     if request.method == 'POST':
-        apartment_filters_form = ApartmentFiltersForm(request.POST)
-        if apartment_filters_form.is_valid():
-            filtered_apartments = apartment_filters_form.get_filtered()
+        filters_form = FiltersForm(request.POST)
+        request.session['real-estate-filters'] = request.POST
+        if filters_form.is_valid():
+            real_estate = filters_form.get_filtered()
     else:
-        filtered_apartments = Apartment.objects.filter(status='published')
-        apartment_filters_form = ApartmentFiltersForm()
+        filters_form = FiltersForm()
+        real_estate = RealEstateType.objects.filter(status='published')
+
+    paginator = Paginator(real_estate, 2, allow_empty_first_page=True)
+    page = request.GET.get('page')
+    real_estate_for_page = paginator.get_page(page)
+
+    return (real_estate, real_estate_for_page, filters_form)
+
+
+def apartments(request):
+    real_estate, real_estate_for_page, filters_form = get_real_estate_data(
+        request, ApartmentFiltersForm, Apartment)
 
     return render(request, 'agency/RealEstate/apartments.html', {
         "social_networks": SocialNetwork.objects.all(),
-        'real_estate': filtered_apartments,
-        'hot_real_estate': filtered_apartments.filter(is_hot_offer=True),
-        'apartment_filters_form': apartment_filters_form,
+        'real_estate': real_estate_for_page,
+        'hot_real_estate': real_estate.filter(is_hot_offer=True),
+        'apartment_filters_form': filters_form,
         'details_page': 'agency:apartment_details'
     })
 
@@ -143,19 +162,14 @@ def apartment_details(request, pk):
 
 
 def houses(request):
-    if request.method == 'POST':
-        house_filters_form = HouseFiltersForm(request.POST)
-        if house_filters_form.is_valid():
-            filtered_houses = house_filters_form.get_filtered()
-    else:
-        filtered_houses = House.objects.filter(status='published')
-        house_filters_form = HouseFiltersForm()
+    real_estate, real_estate_for_page, filters_form = get_real_estate_data(
+        request, HouseFiltersForm, House)
 
     return render(request, 'agency/RealEstate/houses.html', {
         "social_networks": SocialNetwork.objects.all(),
-        'real_estate': filtered_houses,
-        'hot_real_estate': filtered_houses.filter(is_hot_offer=True),
-        'house_filters_form': house_filters_form,
+        'real_estate': real_estate_for_page,
+        'hot_real_estate': real_estate.filter(is_hot_offer=True),
+        'house_filters_form': filters_form,
         'details_page': 'agency:house_details'
     })
 
@@ -169,19 +183,14 @@ def house_details(request, pk):
 
 
 def lands(request):
-    if request.method == 'POST':
-        land_filters_form = LandFiltersForm(request.POST)
-        if land_filters_form.is_valid():
-            filtered_lands = land_filters_form.get_filtered()
-    else:
-        filtered_lands = Land.objects.filter(status='published')
-        land_filters_form = LandFiltersForm()
+    real_estate, real_estate_for_page, filters_form = get_real_estate_data(
+        request, LandFiltersForm, Land)
 
     return render(request, 'agency/RealEstate/lands.html', {
         "social_networks": SocialNetwork.objects.all(),
-        'real_estate': filtered_lands,
-        'hot_real_estate': filtered_lands.filter(is_hot_offer=True),
-        'land_filters_form': land_filters_form,
+        'real_estate': real_estate_for_page,
+        'hot_real_estate': real_estate.filter(is_hot_offer=True),
+        'land_filters_form': filters_form,
         'details_page': 'agency:land_details'
     })
 
@@ -195,19 +204,14 @@ def land_details(request, pk):
 
 
 def garages(request):
-    if request.method == 'POST':
-        garage_filters_form = GarageFiltersForm(request.POST)
-        if garage_filters_form.is_valid():
-            filtered_garages = garage_filters_form.get_filtered()
-    else:
-        filtered_garages = Garage.objects.filter(status='published')
-        garage_filters_form = GarageFiltersForm()
+    real_estate, real_estate_for_page, filters_form = get_real_estate_data(
+        request, GarageFiltersForm, Garage)
 
     return render(request, 'agency/RealEstate/garages.html', {
         "social_networks": SocialNetwork.objects.all(),
-        'real_estate': filtered_garages,
-        'hot_real_estate': filtered_garages.filter(is_hot_offer=True),
-        'garage_filters_form': garage_filters_form,
+        'real_estate': real_estate_for_page,
+        'hot_real_estate': real_estate.filter(is_hot_offer=True),
+        'garage_filters_form': filters_form,
         'details_page': 'agency:garage_details'
     })
 
@@ -221,19 +225,14 @@ def garage_details(request, pk):
 
 
 def commercial(request):
-    if request.method == 'POST':
-        commercial_filters_form = CommercialFiltersForm(request.POST)
-        if commercial_filters_form.is_valid():
-            filtered_commercial = commercial_filters_form.get_filtered()
-    else:
-        filtered_commercial = Commercial.objects.filter(status='published')
-        commercial_filters_form = CommercialFiltersForm()
+    real_estate, real_estate_for_page, filters_form = get_real_estate_data(
+        request, CommercialFiltersForm, Commercial)
 
     return render(request, 'agency/RealEstate/commercial.html', {
         "social_networks": SocialNetwork.objects.all(),
-        'real_estate': filtered_commercial,
-        'hot_real_estate': filtered_commercial.filter(is_hot_offer=True),
-        'commercial_filters_form': commercial_filters_form,
+        'real_estate': real_estate_for_page,
+        'hot_real_estate': real_estate.filter(is_hot_offer=True),
+        'commercial_filters_form': filters_form,
         'details_page': 'agency:commercial_details'
     })
 

@@ -158,7 +158,7 @@ class RealEstate(models.Model):
         choices=(('published', 'Опубликовано'),
                  ('archived', 'В архиве'),
                  ('application', 'Заявка пользователя')),
-        default='archived',
+        default='published',
         verbose_name='Статус')
     is_hot_offer = models.BooleanField(
         default=False, verbose_name='Горячее предложение')

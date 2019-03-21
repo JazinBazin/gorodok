@@ -9,8 +9,8 @@ class RealEstateFiltersForm(forms.Form):
         choices=(
             ('Do not sort', 'Не сортировать'),
             ('price', 'По цене'),
-            ('number_of_rooms', 'По количеству комнат'),
-            ('floor_number', 'По номеру этажа')
+            # ('number_of_rooms', 'По количеству комнат'),
+            # ('floor_number', 'По номеру этажа')
         ),
         widget=forms.Select(attrs={'class': 'form-control'})
     )
