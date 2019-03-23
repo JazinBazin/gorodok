@@ -16,8 +16,9 @@ from .models import \
 
 class FeedbackAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
-        video_token = str(obj.video_link)[-11:]
-        obj.video_link = 'https://www.youtube.com/embed/' + video_token
+        if obj.video_link:   
+            video_token = str(obj.video_link)[-11:]
+            obj.video_link = 'https://www.youtube.com/embed/' + video_token
         obj.save()
 
 
