@@ -23,7 +23,7 @@ class BackgroundData(models.Model):
     background = models.ForeignKey(
         Background, on_delete=models.CASCADE, related_name='data')
     background_color = RGBColorField(verbose_name='Цвет', default='#ffffff')
-    background_image = models.ImageField(
+    image = models.ImageField(
         upload_to="agency/images/BackgroundImages", blank=True, verbose_name='Изображение')
 
 
@@ -356,7 +356,7 @@ class Partner(models.Model):
 list_of_models_with_image = (
     SocialNetwork, ProductCategory, Advantage, Feedback, AboutCompanyBlock,
     News, Partner, Apartment, ApartmentImage, House, HouseImage, Land,
-    LandImage, Garage, GarageImage, Commercial, CommercialImage)
+    LandImage, Garage, GarageImage, Commercial, CommercialImage, BackgroundData)
 
 
 def receiver_with_multiple_senders(signal, senders, **kwargs):
