@@ -8,7 +8,7 @@
 <div class="row">
     {% for feedback in feedbacks %}
     <div class="col-12 col-md-6">
-        <div class="card bg-light">
+        <div class="card bg-light mb-3">
             {% if feedback.image %}
             <div class="image-cropper">
                 <img src="{{ feedback.image.url }}" alt="avatar" class="profile-pic">
