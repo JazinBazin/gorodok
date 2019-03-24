@@ -26,10 +26,14 @@
         <p>{{ contacts.working_time }}</p>
         <p>Перерыв</p>
         <p>{{ contacts.break_time }}</p>
+        {% if contacts.ogrn %}
         <p>ОГРН</p>
         <p>{{ contacts.ogrn }}</p>
+        {% endif %}
+        {% if contacts.inn %}
         <p>ИНН</p>
         <p>{{ contacts.inn }}</p>
+        {% endif %}
     </div>
 </div>
 {% endif %}

@@ -85,8 +85,8 @@ class Contact(models.Model):
     working_time = models.CharField(
         max_length=100, verbose_name='Рабочее время')
     break_time = models.CharField(max_length=100, verbose_name='Перерыв')
-    ogrn = models.CharField(max_length=100, verbose_name='ОГРН')
-    inn = models.CharField(max_length=100, verbose_name='ИНН')
+    ogrn = models.CharField(max_length=100, verbose_name='ОГРН', blank=True)
+    inn = models.CharField(max_length=100, verbose_name='ИНН', blank=True)
 
     def __str__(self):
         return "Контакты агенства недвижимости"
