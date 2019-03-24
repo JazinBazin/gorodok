@@ -3,13 +3,13 @@
 <div class="row justify-content-center">
     {% for advantage in advantages %}
     <div class="col-12 col-md-6">
-        <div class="card border-0">
+        <div class="card border-0 bg-light">
             <img src="{{ advantage.image.url }}" class="card-img-top w-25 h-25 align-self-center" alt="">
             <div class="card-body">
                 <h5 class="card-title">{{ advantage.title }}</h5>
                 <ul class="list-group list-group-flush">
                     {% for advantage_list_item in advantage.list_items.all %}
-                    <li class="list-group-item">{{ advantage_list_item.text }}</li>
+                    <li class="list-group-item bg-light">{{ advantage_list_item.text }}</li>
                     {% endfor %}
                 </ul>
             </div>

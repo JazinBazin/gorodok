@@ -11,7 +11,18 @@ from .models import \
     Commercial, CommercialImage, \
     News, Partner, \
     Service, ServiceListItem, \
-    AboutCompanyBlock
+    AboutCompanyBlock, \
+    Background, BackgroundData
+
+
+class BackgroundDataInline(admin.TabularInline):
+    model = BackgroundData
+    extra = 1
+    max_num = 1
+
+
+class BackgroundAdmin(admin.ModelAdmin):
+    inlines = [BackgroundDataInline]
 
 
 class FeedbackAdmin(admin.ModelAdmin):
@@ -160,3 +171,4 @@ admin.site.register(News)
 admin.site.register(Partner)
 admin.site.register(Service, SeviceAdmin)
 admin.site.register(AboutCompanyBlock)
+admin.site.register(Background, BackgroundAdmin)

@@ -1,6 +1,30 @@
 import os
 from django.db import models
 from django.utils import timezone
+from colorful.fields import RGBColorField
+
+
+class Background(models.Model):
+    class Meta:
+        verbose_name = 'Фон'
+        verbose_name_plural = 'Фон'
+
+    page_name = models.CharField(max_length=100, verbose_name='Страница')
+
+    def __str__(self):
+        return self.page_name
+
+
+class BackgroundData(models.Model):
+    class Meta:
+        verbose_name = 'Цвет и изображение'
+        verbose_name_plural = 'Цвет и изображение'
+
+    background = models.ForeignKey(
+        Background, on_delete=models.CASCADE, related_name='data')
+    background_color = RGBColorField(verbose_name='Цвет', default='#ffffff')
+    background_image = models.ImageField(
+        upload_to="agency/images/BackgroundImages", blank=True, verbose_name='Изображение')
 
 
 class SocialNetwork(models.Model):

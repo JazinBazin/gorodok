@@ -8,9 +8,8 @@
 <div class="row">
     {% for feedback in feedbacks %}
     <div class="col-12 col-md-6">
-        <div class="card border-0">
+        <div class="card bg-light">
             {% if feedback.image %}
-            <!-- <img src="{{ feedback.image.url }}" class="card-img-top w-25 h-25 align-self-center" alt=""> -->
             <div class="image-cropper">
                 <img src="{{ feedback.image.url }}" alt="avatar" class="profile-pic">
             </div>

@@ -4,7 +4,7 @@
 <div class="row">
     {% for piece_of_news in news %}
     <div class="col-12 col-md-6 mb-3">
-        <div class="card">
+        <div class="card bg-light">
             <img src="{{ piece_of_news.image.url }}" alt="" class="card-img-top">
             <div class="card-body">
                 <a href="{% url 'agency:news_details' pk=piece_of_news.id %}"

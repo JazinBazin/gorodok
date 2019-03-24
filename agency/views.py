@@ -23,7 +23,8 @@ from .models import \
     House, Land, \
     Garage, Commercial, \
     News, Partner, \
-    Service, AboutCompanyBlock
+    Service, AboutCompanyBlock, \
+    Background
 
 
 def index(request):
@@ -33,28 +34,32 @@ def index(request):
         'advantages': Advantage.objects.all(),
         'feedbacks': Feedback.objects.all(),
         'partners': Partner.objects.all(),
-        'contacts': Contact.objects.first()
+        'contacts': Contact.objects.first(),
+        'background': Background.objects.get(page_name='Главная').data.first()
     })
 
 
 def services(request):
     return render(request, 'agency/Pages/services.html', {
         'social_networks': SocialNetwork.objects.all(),
-        'services': Service.objects.all()
+        'services': Service.objects.all(),
+        'background': Background.objects.get(page_name='Услуги').data.first()
     })
 
 
 def about(request):
     return render(request, 'agency/Pages/about.html', {
         'social_networks': SocialNetwork.objects.all(),
-        'about_company_blocks': AboutCompanyBlock.objects.all()
+        'about_company_blocks': AboutCompanyBlock.objects.all(),
+        'background': Background.objects.get(page_name='О нас').data.first()
     })
 
 
 def contacts(request):
     return render(request, 'agency/Pages/contacts_page.html', {
         'social_networks': SocialNetwork.objects.all(),
-        'contacts': Contact.objects.first()
+        'contacts': Contact.objects.first(),
+        'background': Background.objects.get(page_name='Контакты').data.first()
     })
 
 
@@ -62,7 +67,8 @@ def news(request):
     return render(request, 'agency/Pages/news.html', {
         'social_networks': SocialNetwork.objects.all(),
         'news': News.objects.filter(
-            status='published').order_by('-publication_date')
+            status='published').order_by('-publication_date'),
+        'background': Background.objects.get(page_name='Новости').data.first()
     })
 
 
@@ -70,7 +76,8 @@ def news_details(request, pk):
     piece_of_news = get_object_or_404(News, pk=pk)
     return render(request, 'agency/Pages/news_details.html', {
         'social_networks': SocialNetwork.objects.all(),
-        'piece_of_news': piece_of_news
+        'piece_of_news': piece_of_news,
+        'background': Background.objects.get(page_name='Новости').data.first()
     })
 
 
@@ -85,6 +92,7 @@ def application(request):
     return render(request, 'agency/Pages/application.html', {
         'application_form': application_form,
         'social_networks': SocialNetwork.objects.all(),
+        'background': Background.objects.get(page_name='Оставить заявку').data.first()
     })
 
 
@@ -106,7 +114,8 @@ def offer_response(request, title, vendor_code):
 def advert(request):
     return render(request, 'agency/Pages/advert.html', {
         'social_networks': SocialNetwork.objects.all(),
-        'contacts': Contact.objects.first()
+        'contacts': Contact.objects.first(),
+        'background': Background.objects.get(page_name='Добавить объявление').data.first()
     })
 
 
@@ -152,7 +161,8 @@ def apartments(request):
         'real_estate': real_estate_for_page,
         'hot_real_estate': real_estate.filter(is_hot_offer=True),
         'apartment_filters_form': filters_form,
-        'details_page': 'agency:apartment_details'
+        'details_page': 'agency:apartment_details',
+        'background': Background.objects.get(page_name='Квартиры').data.first()
     })
 
 
@@ -160,7 +170,8 @@ def apartment_details(request, pk):
     apartment = get_object_or_404(Apartment, pk=pk)
     return render(request, 'agency/RealEstate/apartment_details.html', {
         "social_networks": SocialNetwork.objects.all(),
-        'real_estate': apartment
+        'real_estate': apartment,
+        'background': Background.objects.get(page_name='Квартиры').data.first()
     })
 
 
@@ -173,7 +184,8 @@ def houses(request):
         'real_estate': real_estate_for_page,
         'hot_real_estate': real_estate.filter(is_hot_offer=True),
         'house_filters_form': filters_form,
-        'details_page': 'agency:house_details'
+        'details_page': 'agency:house_details',
+        'background': Background.objects.get(page_name='Дома и дачи').data.first()
     })
 
 
@@ -181,7 +193,8 @@ def house_details(request, pk):
     house = get_object_or_404(House, pk=pk)
     return render(request, 'agency/RealEstate/house_details.html', {
         "social_networks": SocialNetwork.objects.all(),
-        'real_estate': house
+        'real_estate': house,
+        'background': Background.objects.get(page_name='Дома и дачи').data.first()
     })
 
 
@@ -194,7 +207,8 @@ def lands(request):
         'real_estate': real_estate_for_page,
         'hot_real_estate': real_estate.filter(is_hot_offer=True),
         'land_filters_form': filters_form,
-        'details_page': 'agency:land_details'
+        'details_page': 'agency:land_details',
+        'background': Background.objects.get(page_name='Земля').data.first()
     })
 
 
@@ -202,7 +216,8 @@ def land_details(request, pk):
     land = get_object_or_404(Land, pk=pk)
     return render(request, 'agency/RealEstate/land_details.html', {
         "social_networks": SocialNetwork.objects.all(),
-        'real_estate': land
+        'real_estate': land,
+        'background': Background.objects.get(page_name='Земля').data.first()
     })
 
 
@@ -215,7 +230,8 @@ def garages(request):
         'real_estate': real_estate_for_page,
         'hot_real_estate': real_estate.filter(is_hot_offer=True),
         'garage_filters_form': filters_form,
-        'details_page': 'agency:garage_details'
+        'details_page': 'agency:garage_details',
+        'background': Background.objects.get(page_name='Гаражи').data.first()
     })
 
 
@@ -223,7 +239,8 @@ def garage_details(request, pk):
     garage = get_object_or_404(Garage, pk=pk)
     return render(request, 'agency/RealEstate/garage_details.html', {
         "social_networks": SocialNetwork.objects.all(),
-        'real_estate': garage
+        'real_estate': garage,
+        'background': Background.objects.get(page_name='Гаражи').data.first()
     })
 
 
@@ -236,7 +253,8 @@ def commercial(request):
         'real_estate': real_estate_for_page,
         'hot_real_estate': real_estate.filter(is_hot_offer=True),
         'commercial_filters_form': filters_form,
-        'details_page': 'agency:commercial_details'
+        'details_page': 'agency:commercial_details',
+        'background': Background.objects.get(page_name='Коммерция').data.first()
     })
 
 
@@ -244,5 +262,6 @@ def commercial_details(request, pk):
     commercial = get_object_or_404(Commercial, pk=pk)
     return render(request, 'agency/RealEstate/commercial_details.html', {
         "social_networks": SocialNetwork.objects.all(),
-        'real_estate': commercial
+        'real_estate': commercial,
+        'background': Background.objects.get(page_name='Коммерция').data.first()
     })
