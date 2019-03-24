@@ -24,12 +24,13 @@ class RealEstateFiltersForm(forms.Form):
         widget=forms.Select(attrs={'class': 'form-control'})
     )
 
-    purchase_or_rent = forms.ChoiceField(
-        label='Покупка/Аренда:',
+    type_of_transaction = forms.ChoiceField(
+        label='Вид сделки:',
         choices=(
             ('Any', 'Не важно'),
             ('purchase', 'Покупка'),
-            ('rent', 'Аренда')
+            ('rent', 'Аренда'),
+            ('swap', 'Обмен')
         ),
         widget=forms.Select(attrs={'class': 'form-control'})
     )
@@ -76,9 +77,9 @@ class RealEstateFiltersForm(forms.Form):
             square__gte=self.cleaned_data['square_from'],
             square__lte=self.cleaned_data['square_to'])
 
-        if self.cleaned_data['purchase_or_rent'] != 'Any':
+        if self.cleaned_data['type_of_transaction'] != 'Any':
             filtered = filtered.filter(
-                purchase_or_rent=self.cleaned_data['purchase_or_rent'])
+                type_of_transaction=self.cleaned_data['type_of_transaction'])
 
         if self.cleaned_data['sort_type'] != 'Do not sort':
             if self.cleaned_data['sort_order'] == 'Ascending':

@@ -30,11 +30,13 @@
                 {% block unique_details %}
                 {% endblock %}
                 <tr>
-                    <td>Продажа/Аренда:</td>
-                    {% if real_estate.purchase_or_rent == "purchase" %}
+                    <td>Вид сделки:</td>
+                    {% if real_estate.type_of_transaction == "purchase" %}
                     <td>Продажа</td>
-                    {% else %}
+                    {% elif real_estate.type_of_transaction == "rent" %}
                     <td>Аренда</td>
+                    {% else %}
+                    <td>Обмен</td>
                     {% endif %}
                 </tr>
                 <tr>

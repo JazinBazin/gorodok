@@ -172,9 +172,12 @@ class RealEstate(models.Model):
     description = models.TextField(verbose_name='Описание')
     vendor_code = models.CharField(
         max_length=20, unique=True, verbose_name='Артикул')
-    purchase_or_rent = models.CharField(
-        max_length=8, choices=(('purchase', 'Продажа'), ('rent', 'Аренда')),
-        default='purchase', verbose_name='Продажа/Аренда')
+    type_of_transaction = models.CharField(
+        max_length=8, choices=(
+            ('purchase', 'Продажа'),
+            ('rent', 'Аренда'),
+            ('swap', 'Обмен')),
+        default='purchase', verbose_name='Вид сделки')
     address = models.CharField(max_length=200, verbose_name='Адрес')
     owner_phone = models.CharField(
         max_length=100, verbose_name='Номер телефона владельца')
