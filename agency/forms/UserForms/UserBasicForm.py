@@ -16,7 +16,7 @@ class UserBasicForm(forms.Form):
 
     user_phone = forms.CharField(
         min_length=11,
-        max_length=11,
+        max_length=100,
         label="Номер телефона:",
         required=True,
         widget=forms.TextInput(attrs={
