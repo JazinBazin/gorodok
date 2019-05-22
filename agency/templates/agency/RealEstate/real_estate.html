@@ -1,26 +1,28 @@
 {% extends 'agency/Basic/basic.html' %}
 {% load static %}
 {% load agency_extras %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'agency/CSS/real_estate.css' %}">
+{% endblock %}
 {% block content %}
+{% block form_type %}
+{% endblock %}
 {% if hot_real_estate %}
 <h1 class="display-4 text-center mb-3">Горячие предложения</h1>
-<div class="row">
+<div class="card-deck real-estate-cards">
     {% for estate in hot_real_estate %}
-    <div class="col-12 col-sm-6 col-lg-4 mb-3">
-        <div class="card bg-light">
-            <div class="card-body d-flex flex-column align-items-center">
+    <div class="card bg-light mb-3">
+        <a href="{% url details_page estate.id %}" target="_blank">
+            <img src="{{ estate.image.url }}" class="card-img-top fit-image" alt="">
+        </a>
+        <div class="card-body d-flex flex-column align-items-center">
+            <a class="card-link" href="{% url details_page estate.id %}" target="_blank">
                 <h5 class="card-title lead">{{ estate.title_text }}</h5>
-                <p class="card-text">Арт. {{ estate.vendor_code }}</p>
-                <a href="{% url details_page estate.id %}" target="_blank">
-                    <img src="{{ estate.image.url }}" class="img-fluid" alt="">
-                </a>
-            </div>
-            <div class="card-footer d-flex flex-column align-items-center">
-                <p> {{ estate.price|price_value }} ₽</p>
-                <a class="btn btn-outline-success" href="{% url details_page estate.id %}" target="_blank" role="button">
-                    Подробнее
-                </a>
-            </div>
+            </a>
+            <p class="card-text">Арт. {{ estate.vendor_code }}</p>
+        </div>
+        <div class="card-footer">
+            <p class="text-center mb-0">{{ estate.price|price_value }} ₽</p>
         </div>
     </div>
     {% endfor %}
@@ -28,75 +30,32 @@
 {% endif %}
 {% block real_estate_header %}
 {% endblock %}
-<div class="row">
-    <button class="btn btn-outline-success d-block d-md-none ml-3 mb-3" id="buttonFilters">Фильтры</button>
-    <div class="col-12 col-md-3 d-none d-md-block" id="filtersColumn">
-        {% block form_type %}
-        {% endblock %}
-    </div>
-    <div class="col-12 col-md-9">
-        <div class="row">
-            {% if real_estate %}
-            {% for estate in real_estate %}
-            <div class="col-12 col-sm-6 mb-3">
-                <div class="card bg-light">
-                    <div class="card-body d-flex flex-column align-items-center">
-                        <h5 class="card-title lead">{{ estate.title_text }}</h5>
-                        <p class="card-text">Арт. {{ estate.vendor_code }}</p>
-                        <a href="{% url details_page estate.id %}" target="_blank">
-                            <img src="{{ estate.image.url }}" class="img-fluid" alt="">
-                        </a>
-                    </div>
-                    <div class="card-footer d-flex flex-column align-items-center">
-                        <p> {{ estate.price|price_value }} ₽</p>
-                        <a class="btn btn-outline-success" href="{% url details_page estate.id %}" target="_blank" role="button">
-                            Подробнее
-                        </a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-            {% else %}
-            <p class="lead">Объявления не найдены.</p>
-            {% endif %}
-        </div>
-        <nav aria-label="Разбиение страницы">
-            <ul class="pagination pagination-lg justify-content-center">
-                <li class="page-item">
-                    {% if real_estate.has_previous %}
-                    <a class="page-link" href="?page={{ real_estate.previous_page_number }}"
-                        aria-label="Предыдущая часть страницы">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Назад</span>
-                    </a>
-                    {% else %}
-                    <a class="page-link" href="?page={{ real_estate.paginator.num_pages }}"
-                        aria-label="Предыдущая часть страницы">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Назад</span>
-                    </a>
-                    {% endif %}
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Текущая часть страницы">{{ real_estate.number }}</a>
-                </li>
-                <li class="page-item">
-                    {% if real_estate.has_next %}
-                    <a class="page-link" href="?page={{ real_estate.next_page_number }}"
-                        aria-label="Следующая часть страницы">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Вперёд</span>
-                    </a>
-                    {% else %}
-                    <a class="page-link" href="?page=1" aria-label="Следующая часть страницы">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Вперёд</span>
-                    </a>
-                    {% endif %}
-                </li>
-            </ul>
-        </nav>
-    </div>
+{% if real_estate %}
+<div class="row justify-content-center">
+    {% include 'agency/RealEstate/pagination.html' %}
 </div>
-<script src="{% static 'agency/JS/filters.js' %}"></script>
+<div class="card-deck real-estate-cards">
+    {% for estate in real_estate %}
+    <div class="card bg-light mb-3">
+        <a href="{% url details_page estate.id %}" target="_blank">
+            <img src="{{ estate.image.url }}" class="card-img-top fit-image" alt="">
+        </a>
+        <div class="card-body d-flex flex-column align-items-center">
+            <a class="card-link" href="{% url details_page estate.id %}" target="_blank">
+                <h5 class="card-title lead">{{ estate.title_text }}</h5>
+            </a>
+            <p class="card-text">Арт. {{ estate.vendor_code }}</p>
+        </div>
+        <div class="card-footer">
+            <p class="text-center mb-0">{{ estate.price|price_value }} ₽</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="row justify-content-center">
+    {% include 'agency/RealEstate/pagination.html' %}
+</div>
+{% else %}
+<p class="lead">Объявления не найдены.</p>
+{% endif %}
 {% endblock %}

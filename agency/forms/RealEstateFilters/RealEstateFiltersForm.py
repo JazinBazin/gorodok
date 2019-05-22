@@ -27,7 +27,7 @@ class RealEstateFiltersForm(forms.Form):
     type_of_transaction = forms.ChoiceField(
         label='Вид сделки:',
         choices=(
-            ('Any', 'Не важно'),
+            ('Any', 'Любой'),
             ('purchase', 'Покупка'),
             ('rent', 'Аренда'),
             ('swap', 'Обмен')

@@ -1,41 +1,49 @@
-<div class="form-group">
-    {{ form.sort_type.errors }}
-    {{ form.sort_type.label }}
-    {{ form.sort_type }}
-</div>
-<div class="form-group">
-    {{ form.sort_order.errors }}
-    {{ form.sort_order.label }}
-    {{ form.sort_order }}
-</div>
-<div class="form-group">
-    {{ form.type_of_transaction.errors }}
-    {{ form.type_of_transaction.label }}
-    {{ form.type_of_transaction }}
-</div>
-<div class="form-group">
-    {{ form.square_from.label }}
-    <div class="form-row form-group">
-        <div class="col">
-            {{ form.square_from.errors }}
-            {{ form.square_from }}
+<div class="form-row">
+    <div class="col-12 col-sm-6 col-md-4">
+        <div class="mb-2">
+            {{ form.sort_type.label }}
+            {{ form.sort_type.errors }}
+            {{ form.sort_type }}
         </div>
-        <div class="col">
-            {{ form.square_to.errors }}
-            {{ form.square_to }}
+        <div class="mb-2">
+            {{ form.sort_order.label }}
+            {{ form.sort_order.errors }}
+            {{ form.sort_order }}
         </div>
     </div>
-</div>
-<div class="form-group">
-    {{ form.price_from.label }}
-    <div class="form-row form-group">
-        <div class="col">
-            {{ form.price_from.errors }}
-            {{ form.price_from }}
+    <div class="col-12 col-sm-6 col-md-4">
+        <div class="mb-2">
+            <label class="mb-0">Цена:</label>
+            <div class="form-row">
+                <div class="col">
+                    {{ form.price_from.errors }}
+                    {{ form.price_from }}
+                </div>
+                <div class="col">
+                    {{ form.price_to.errors }}
+                    {{ form.price_to }}
+                </div>
+            </div>
         </div>
-        <div class="col">
-            {{ form.price_to.errors }}
-            {{ form.price_to }}
+        <div class="mb-2">
+            <label class="mb-0">Площадь:</label>
+            <div class="form-row">
+                <div class="col">
+                    {{ form.square_from.errors }}
+                    {{ form.square_from }}
+                </div>
+                <div class="col">
+                    {{ form.square_to.errors }}
+                    {{ form.square_to }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <div class="form-row">
+            {{ form.type_of_transaction.label }}
+            {{ form.type_of_transaction.errors }}
+            {{ form.type_of_transaction }}
         </div>
     </div>
 </div>

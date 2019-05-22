@@ -2,38 +2,44 @@
     {% csrf_token %}
     {{ form.non_field_errors }}
     {% include 'agency/Forms/FilterForms/real_estate_filters.html' %}
-    <div class="form-group">
-        {{ form.house_type.errors }}
-        {{ form.house_type.label }}
-        {{ form.house_type }}
-    </div>
-    <div class="form-group">
-        {{ form.number_of_rooms_from.label }}
-        <div class="form-row form-group">
-            <div class="col">
-                {{ form.number_of_rooms_from.errors }}
-                {{ form.number_of_rooms_from }}
+    <div class="form-row">
+        <div class="col-12 col-sm-6 col-md-4">
+            <div class="mb-2">
+                <label class="mb-0">Количество комнат:</label>
+                <div class="form-row">
+                    <div class="col">
+                        {{ form.number_of_rooms_from.errors }}
+                        {{ form.number_of_rooms_from }}
+                    </div>
+                    <div class="col">
+                        {{ form.number_of_rooms_to.errors }}
+                        {{ form.number_of_rooms_to }}
+                    </div>
+                </div>
             </div>
-            <div class="col">
-                {{ form.number_of_rooms_to.errors }}
-                {{ form.number_of_rooms_to }}
+        </div>
+        <div class="col-12 col-sm-6 col-md-4">
+            <div class="mb-2">
+                <label class="mb-0">Этажность:</label>
+                <div class="form-row">
+                    <div class="col">
+                        {{ form.floor_count_from.errors }}
+                        {{ form.floor_count_from }}
+                    </div>
+                    <div class="col">
+                        {{ form.floor_count_to.errors }}
+                        {{ form.floor_count_to }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4">
+            <div class="mb-2">
+                {{ form.house_type.errors }}
+                {{ form.house_type.label }}
+                {{ form.house_type }}
             </div>
         </div>
     </div>
-    <div class="form-group">
-        {{ form.floor_count_from.label }}
-        <div class="form-row form-group">
-            <div class="col">
-                {{ form.floor_count_from.errors }}
-                {{ form.floor_count_from }}
-            </div>
-            <div class="col">
-                {{ form.floor_count_to.errors }}
-                {{ form.floor_count_to }}
-            </div>
-        </div>
-    </div>
-    <div class="form-group d-flex justify-content-center">
-        <button type="submit" class="btn btn-outline-success mr-3">Применить</button>
-    </div>
+    {% include 'agency/Forms/FilterForms/submit_button.html' %}
 </form>

@@ -9,7 +9,7 @@ class HouseFiltersForm(RealEstateFiltersForm):
     house_type = forms.ChoiceField(
         label='Дом/Дача:',
         choices=(
-            ('Any', 'Не важно'),
+            ('Any', 'Дом или дача'),
             ('house', 'Дом'),
             ('country_house', 'Дача'),
         ),
