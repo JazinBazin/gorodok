@@ -21,13 +21,13 @@
 }
 
 #openedImageContainer {
-    height: 768px;
+    height: 480px;
     position: relative;
 }
 
 #openedImage {
     height: auto;
-    max-height: 768px;
+    max-height: 480px;
     max-width: 100%;
     border-radius: 10px;
 }
